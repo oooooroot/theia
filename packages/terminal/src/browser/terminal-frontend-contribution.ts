@@ -87,27 +87,27 @@ export namespace TerminalCommands {
     export const SCROLL_LINE_UP: Command = {
         id: 'terminal:scroll:line:up',
         category: TERMINAL_CATEGORY,
-        label: 'Terminal scroll line up'
+        label: 'Scroll line up'
     };
     export const SCROLL_LINE_DOWN: Command = {
         id: 'terminal:scroll:line:down',
         category: TERMINAL_CATEGORY,
-        label: 'Terminal scroll line down'
+        label: 'Scroll line down'
     };
     export const SCROLL_TO_TOP: Command = {
         id: 'terminal:scroll:top',
         category: TERMINAL_CATEGORY,
-        label: 'Terminal scroll to top'
+        label: 'Scroll to top'
     };
     export const SCROLL_PAGE_UP: Command = {
         id: 'terminal:scroll:page:up',
         category: TERMINAL_CATEGORY,
-        label: 'Terminal scroll page up'
+        label: 'Scroll page up'
     };
     export const SCROLL_PAGE_DOWN: Command = {
         id: 'terminal:scroll:page:down',
         category: TERMINAL_CATEGORY,
-        label: 'Terminal scroll page down'
+        label: 'Scroll page down'
     };
 
     /**
