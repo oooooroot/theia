@@ -83,6 +83,33 @@ export namespace TerminalCommands {
         category: TERMINAL_CATEGORY,
         label: 'Split Terminal'
     };
+
+    export const SCROLL_LINE_UP: Command = {
+        id: 'terminal:scroll:line:up',
+        category: TERMINAL_CATEGORY,
+        label: 'Terminal scroll line up'
+    };
+    export const SCROLL_LINE_DOWN: Command = {
+        id: 'terminal:scroll:line:down',
+        category: TERMINAL_CATEGORY,
+        label: 'Terminal scroll line down'
+    };
+    export const SCROLL_TO_TOP: Command = {
+        id: 'terminal:scroll:top',
+        category: TERMINAL_CATEGORY,
+        label: 'Terminal scroll to top'
+    };
+    export const SCROLL_PAGE_UP: Command = {
+        id: 'terminal:scroll:page:up',
+        category: TERMINAL_CATEGORY,
+        label: 'Terminal scroll page up'
+    };
+    export const SCROLL_PAGE_DOWN: Command = {
+        id: 'terminal:scroll:page:down',
+        category: TERMINAL_CATEGORY,
+        label: 'Terminal scroll page down'
+    };
+
     /**
      * Command that displays all terminals that are currently opened
      */
@@ -205,6 +232,41 @@ export class TerminalFrontendContribution implements TerminalService, CommandCon
                 this.activateTerminal(termWidget);
             }
         }));
+        commands.registerCommand(TerminalCommands.SCROLL_LINE_UP, {
+                isEnabled: () => this.shell.activeWidget instanceof TerminalWidget,
+                isVisible: () => false,
+                execute: () => {
+                    (this.shell.activeWidget as TerminalWidget).scrollLineUp();
+                }
+        });
+        commands.registerCommand(TerminalCommands.SCROLL_LINE_DOWN, {
+            isEnabled: () => this.shell.activeWidget instanceof TerminalWidget,
+            isVisible: () => false,
+            execute: () => {
+                (this.shell.activeWidget as TerminalWidget).scrollLineDown();
+            }
+        });
+        commands.registerCommand(TerminalCommands.SCROLL_TO_TOP, {
+            isEnabled: () => this.shell.activeWidget instanceof TerminalWidget,
+            isVisible: () => false,
+            execute: () => {
+                (this.shell.activeWidget as TerminalWidget).scrollToTop();
+            }
+        });
+        commands.registerCommand(TerminalCommands.SCROLL_PAGE_UP, {
+            isEnabled: () => this.shell.activeWidget instanceof TerminalWidget,
+            isVisible: () => false,
+            execute: () => {
+                (this.shell.activeWidget as TerminalWidget).scrollPageUp();
+            }
+        });
+        commands.registerCommand(TerminalCommands.SCROLL_PAGE_DOWN, {
+            isEnabled: () => this.shell.activeWidget instanceof TerminalWidget,
+            isVisible: () => false,
+            execute: () => {
+                (this.shell.activeWidget as TerminalWidget).scrollPageDown();
+            }
+        });
     }
 
     registerMenus(menus: MenuModelRegistry): void {
@@ -245,6 +307,31 @@ export class TerminalFrontendContribution implements TerminalService, CommandCon
         keybindings.registerKeybinding({
             command: TerminalCommands.TERMINAL_CLEAR.id,
             keybinding: 'ctrlcmd+k',
+            context: TerminalKeybindingContexts.terminalActive
+        });
+        keybindings.registerKeybinding({
+            command: TerminalCommands.SCROLL_LINE_UP.id,
+            keybinding: 'ctrl+shift+up',
+            context: TerminalKeybindingContexts.terminalActive
+        });
+        keybindings.registerKeybinding({
+            command: TerminalCommands.SCROLL_LINE_DOWN.id,
+            keybinding: 'ctrl+shift+down',
+            context: TerminalKeybindingContexts.terminalActive
+        });
+        keybindings.registerKeybinding({
+            command: TerminalCommands.SCROLL_TO_TOP.id,
+            keybinding: 'home',
+            context: TerminalKeybindingContexts.terminalActive
+        });
+        keybindings.registerKeybinding({
+            command: TerminalCommands.SCROLL_PAGE_UP.id,
+            keybinding: 'pageUp',
+            context: TerminalKeybindingContexts.terminalActive
+        });
+        keybindings.registerKeybinding({
+            command: TerminalCommands.SCROLL_PAGE_DOWN.id,
+            keybinding: 'pageDown',
             context: TerminalKeybindingContexts.terminalActive
         });
 
